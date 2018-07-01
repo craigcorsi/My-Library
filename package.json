@@ -1,0 +1,19 @@
+{
+  "name": "my-library",
+  "version": "1.0.0",
+  "description": "Node/Express/Sequelize/Handlebars app using CRUD operations to take notes on books in a library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/craigcorsi/My-Library.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/craigcorsi/My-Library/issues"
+  },
+  "homepage": "https://github.com/craigcorsi/My-Library#readme"
+}
