@@ -1,5 +1,6 @@
 var express = require("express");
 var bodyParser = require("body-parser");
+var path = require("path");
 
 var app = express();
 var PORT = 3000;
@@ -32,7 +33,7 @@ var works = [
 
 
 app.get("/", function (req, res) {
-    res.send("Welcome to my library! Try routes /api/works followed by /didion1, /geometry1, or /anshaw1!");
+    res.sendFile(path.join(__dirname, "view.html"));
 });
 
 app.get("/api/works", function (req, res) {
@@ -48,7 +49,7 @@ app.get("/api/works/:work", function (req, res) {
             return res.json(works[i]);
         }
     }
-    return res.send("No entry found!");
+    return res.send(false);
 });
 
 
