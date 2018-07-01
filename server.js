@@ -1,7 +1,11 @@
 var express = require("express");
+var bodyParser = require("body-parser");
 
 var app = express();
 var PORT = 3000;
+
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 var works = [
     {
@@ -45,6 +49,16 @@ app.get("/api/works/:work", function (req, res) {
         }
     }
     return res.send("No entry found!");
+});
+
+
+
+// add new work to library
+app.post("/api/works", function(req, res){
+    var newWork = req.body;
+    console.log(newWork);
+    works.push(newWork);
+    res.json(newWork);
 });
 
 
