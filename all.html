@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My Library</title>
+    <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1>My Library</h1>
+            <h3>Search for notes taken on your favorite books!</h3>
+            <hr>
+            <a href="/">
+                <button class="btn btn-danger btn-lg">
+                    <span class="fa fa-eye"></span> Search Entries</button>
+            </a>
+            <a href="/add">
+                <button class="btn btn-danger btn-lg">
+                    <span class="fa fa-plus"></span> Add New Work</button>
+            </a>
+        </div>
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <strong>Library Database</strong>
+                        </h3>
+                    </div>
+                    <div class="panel-body" id="well-section">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        $.get("/api/works", function (data) {
+            for (var i = 0; i < data.length; i++) {
+                var wellSection = $("<div>");
+                wellSection.addClass("well");
+                wellSection.attr("id", "entry-well-" + i);
+                $("#well-section").append(wellSection);
+
+                $("#entry-well-" + i).append("<h2>" + data[i].title + "</h2>");
+                $("#entry-well-" + i).append("<h3>Author: " + data[i].author + "</h4>");
+                $("#entry-well-" + i).append("<h3>Genre: " + data[i].genre + "</h4>");
+                $("#entry-well-" + i).append("<h3>Notes: " + data[i].notes + "</h4>");
+            }
+        });
+    </script>
+
+</body>
+
+</html>

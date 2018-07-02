@@ -1,12 +1,17 @@
 var express = require("express");
+var exphbs = require("express-handlebars");
 var bodyParser = require("body-parser");
 var path = require("path");
 
 var app = express();
-var PORT = 3000;
+var PORT = process.env.PORT || 8080;
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
+// Set Handlebars as the default templating engine.
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 var works = [
     {
@@ -33,12 +38,22 @@ var works = [
 
 
 app.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname, "view.html"));
+    res.render("view");
 });
 
 app.get("/add", function (req, res) {
-    res.sendFile(path.join(__dirname, "add.html"));
+    res.render("add");
 });
+
+app.get("/all", function(req, res){
+    res.render("all");
+});
+
+
+
+
+
+
 
 app.get("/api/works", function (req, res) {
     return res.json(works);
