@@ -21,7 +21,7 @@
             <hr>
             <a href="/">
                 <button class="btn btn-danger btn-lg">
-                    <span class="fa fa-eye"></span> View Characters</button>
+                    <span class="fa fa-eye"></span> View Entries</button>
             </a>
         </div>
         <div class="row">
@@ -70,16 +70,14 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 
     <script type="text/javascript">
-        // Question: What does this code do?
         $("#js-add-btn").on("click", function (event) {
             event.preventDefault();
-            var newCharacter = {
+            var newWork = {
                 keyword: $("#js-add-keyword").val().trim(),
                 title: $("#js-add-title").val().trim(),
                 author: $("#js-add-author").val().trim(),
@@ -87,8 +85,9 @@
                 notes: $("#js-add-notes").val().trim(),
             };
 
-            // Question: What does this code do??
-            $.post("/api/characters", newCharacter)
+            console.log('this will appear before the post request');
+
+            $.post("/api/works", newWork)
                 .then(function (data) {
                     console.log("add.html", data);
                     alert("New entry added!");
