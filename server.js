@@ -46,7 +46,9 @@ app.get("/add", function (req, res) {
 });
 
 app.get("/all", function(req, res){
-    res.render("all");
+    res.render("all", {
+        works: works
+    });
 });
 
 
